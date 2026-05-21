@@ -14,7 +14,6 @@ class FirebaseApi {
     //get permission of firebaseMessaging from user
     await firebaseMessaging.requestPermission();
     final fCMToken = await firebaseMessaging.getToken();
-
     //print user token
     print("token: ${fCMToken}");
   }
