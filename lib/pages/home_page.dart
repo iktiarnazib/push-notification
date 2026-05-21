@@ -1,4 +1,3 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -8,10 +7,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Home Page'), centerTitle: true),
-      body: Column(children: [
-          
-        ],
-      ),
+      body: Column(children: [Text('Home page contents')]),
     );
   }
 }
