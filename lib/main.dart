@@ -1,6 +1,6 @@
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:pushnotification/api/firebase_api.dart';
 import 'package:pushnotification/pages/home_page.dart';
 import 'package:pushnotification/pages/notification_page.dart';
@@ -12,6 +12,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await FirebaseApi().initializeMessage();
+
   runApp(const MyApp());
 }
 
