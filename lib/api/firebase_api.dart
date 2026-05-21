@@ -1,9 +1,5 @@
-import 'dart:io';
-
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
 import 'package:pushnotification/main.dart';
-import 'package:pushnotification/pages/notification_page.dart';
 
 class FirebaseApi {
   //create a firebase instance
@@ -16,6 +12,8 @@ class FirebaseApi {
     final fCMToken = await firebaseMessaging.getToken();
     //print user token
     print("token: ${fCMToken}");
+    //Initialize further settings for push notification
+    initPushNotification();
   }
 
   //Funciton to handle received message
@@ -32,10 +30,14 @@ class FirebaseApi {
 
   //Function to initialize background settings
   Future initPushNotification() async {
-    //handle notification if the app was terminated and now opened
-    firebaseMessaging.getInitialMessage().then(handleMessage);
+    //app is terminated, then reopens with this
+    await firebaseMessaging.getInitialMessage().then((message) {
+      if (message != null) {
+        return handleMessage(message);
+      }
+    });
 
-    //attach event listeners for when a notification opens the app
+    //app is sleeping, on notification incoming it opens.
     FirebaseMessaging.onMessageOpenedApp.listen(handleMessage);
   }
 }
